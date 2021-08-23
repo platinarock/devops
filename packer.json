@@ -1,0 +1,62 @@
+ {
+    "builders": [
+      { 
+        "CPUs": "{{user `vm-cpu-num`}}",
+        "RAM": "{{user `vm-mem-size`}}",
+        "cluster": "{{user `vsphere-cluster`}}",
+        "convert_to_template": true,
+        "datacenter": "{{user `vsphere-datacenter`}}",
+        "datastore": "{{user `vsphere-datastore`}}",
+        "guest_os_type": "windows2019srv_64Guest",
+        "insecure_connection": "true",
+        "iso_paths": [
+          "{{user `iso_ws2019`}}",
+          "{{user `iso_vmtools`}}"
+        ],
+        "network_adapters": [
+          {
+            "network": "{{user `vsphere-network`}}",
+            "network_card": "vmxnet3"
+          }
+        ],
+        "password": "{{user `vsphere-password`}}",
+        "disk_controller_type": "lsilogic-sas",
+        "storage": [  
+          {
+            "disk_size": "{{user `vm-disk-size`}}",
+            "disk_thin_provisioned": true
+          }
+        ],
+  
+        "type": "vsphere-iso",
+        "username": "{{user `vsphere-user`}}",
+        "vcenter_server": "{{user `vsphere-server`}}",
+        "vm_name": "{{user `vm-name`}}",
+        "communicator": "winrm",
+        "winrm_username": "Administrateur",
+        "winrm_password": "Capeos@2020",
+        "folder": "Templates",
+        "ip_wait_timeout": "1h"
+      }
+
+    ],
+
+
+    "variables": {
+      "iso_ws2019": "[SR-CHA-PURE-GP1-CAPEOS-01] ISO/windows_server2016.iso",
+      "vm-cpu-num": "2",
+      "vm-disk-size": "20000",
+      "vm-mem-size": "2048",
+      "vm-name": "Win2019",
+      "vsphere-cluster": "CLS-HOSTING-CAPEOS-01",
+      "vsphere-datacenter": "CAPEOS_817938962",
+      "vsphere-datastore": "SR-CHA-PURE-GP1-CAPEOS-01",
+      "vsphere-network": "Capeos_2674",
+      "vsphere-password": "upw9J8$Q",
+      "vsphere-server": "vc02-vaas.bretagnetelecom.fr",
+      "vsphere-user": "capeos_p.lequere"
+    }
+  }
+  
+
+  
